@@ -10,35 +10,37 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+/**
+ * The Class Department.
+ */
 @Entity
 @Table (name="Department")
 public class Department {
 	
 	@Id
-	@Column (name="dept_id")
+	@Column (name="departmentId")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int dept_id;
-	private String dept_name;
-	private Double avg_salary;
+	private int departmentId;
+	private String departmentName;
+	private Double avgSalary;
 	
-	public int getDept_id() {
-		return dept_id;
+	public int getDepartmentId() {
+		return departmentId;
 	}
-	public void setDept_id(int dept_id) {
-		this.dept_id = dept_id;
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
 	}
-	public String getDept_name() {
-		return dept_name;
+	public String getDeptartmentName() {
+		return departmentName;
 	}
-	public void setDept_name(String dept_name) {
-		this.dept_name = dept_name;
+	public void setDeptartmentName(String departmentName) {
+		this.departmentName = departmentName;
 	}
-	public Double getAvg_salary() {
-		return avg_salary;
+	public Double getAvgSalary() {
+		return avgSalary;
 	}
-	public void setAvg_salary(Double avg_salary) {
-		this.avg_salary = avg_salary;
+	public void setAvgSalary(Double avgSalary) {
+		this.avgSalary = avgSalary;
 	}
 	@OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
     private Set<Worker> workersList;

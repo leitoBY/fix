@@ -9,13 +9,13 @@ public class WorkerDTO implements Serializable{
 	private String firstName;
     private String lastName;
     private Double salary;
-    private int dept_id;
+    private int departmentId;
     
-	public int getDept_id() {
-		return dept_id;
+	public int getDepartmentId() {
+		return departmentId;
 	}
-	public void setDept_id(int dept_id) {
-		this.dept_id = dept_id;
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
 	}
 	public int getId() {
 		return id;

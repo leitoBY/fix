@@ -9,8 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
- 
-
+/**
+ * The Class Worker.
+ */
 @Entity
 @Table(name="Worker")
 public class Worker {
@@ -59,16 +60,11 @@ public class Worker {
 		this.salary = salary;
 	}
 
-	@Override
-    public String toString(){
-        return "id="+id+", firstname="+firstName+", lastname="+lastName+", salary="+salary;
-    }
-	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "dept_id", nullable = true)
-    private Department department;
+	@JoinColumn(name = "departmentId", nullable = true)
+    
+	private Department department;
 	
-
     public Department getDepartment() {
 		return department;
 	}

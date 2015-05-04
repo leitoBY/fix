@@ -1,7 +1,5 @@
 package net.mix.spring;
 
-import java.util.List;
-
 import net.mix.spring.dto.DepartmentDTO;
 import net.mix.spring.service.DepartmentService;
 
@@ -13,34 +11,46 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
+/**
+ * The Class DepartmentController.
+ * handle requests
+ */
 @Controller
 public class DepartmentController {
 
+	
 	@Autowired
 	private DepartmentService departmentService;
 	
+	/**
+	 * Generate list of all departments
+	 *
+	 * @param model the model
+	 * go to department.jsp
+	 */
 	@RequestMapping(value = "/departments", method = RequestMethod.GET)
     public String listDeps(Model model) {
-		
-		List<DepartmentDTO> list = departmentService.listDeps();
-		for(DepartmentDTO d : list) {
-		departmentService.countSalary(d);
-		}
-		
+				
         model.addAttribute("department", new DepartmentDTO());
-        model.addAttribute("listDeps", this.departmentService.listDeps());
+        model.addAttribute("listDeps", this.departmentService.viewsList());
         return "department";
     }
      
-    //For add and update person both
+     /**
+     * Save department.
+     *
+     * @param dep the dep
+     * redirect to /departments
+     */
     @RequestMapping(value= "/department/add", method = RequestMethod.POST)
     public String saveDep(@ModelAttribute("department") DepartmentDTO dep){
          
-        if(dep.getDept_id() == 0){
-            //new person, add it
+        if(dep.getDepartmentId() == 0){
+            //new department, add it
             this.departmentService.saveDep(dep);
         }else{
-            //existing person, call update
+            //existing department, call update
             this.departmentService.editDep(dep);
         }
          
@@ -48,17 +58,30 @@ public class DepartmentController {
          
     }
      
-    @RequestMapping("department/remove/{dept_id}")
-    public String deleteDep(@PathVariable("dept_id") int dept_id){
+    /**
+     * Delete dep.
+     *
+     * @param departmentId the department id
+     * redirect to /departments
+     */
+    @RequestMapping("department/remove/{departmentId}")
+    public String deleteDep(@PathVariable("departmentId") int departmentId){
          
-        this.departmentService.deleteDep(dept_id);
+        this.departmentService.deleteDep(departmentId);
         return "redirect:/departments";
     }
   
-    @RequestMapping("department/edit/{dept_id}")
-    public String editDep(@PathVariable("dept_id") int dept_id, Model model){
-        model.addAttribute("department", this.departmentService.getDep(dept_id));
-        model.addAttribute("listDeps", this.departmentService.listDeps());
+    /**
+     * Edits the dep.
+     *
+     * @param departmentId the department id
+     * @param model the model
+     * go to department.jsp
+     */
+    @RequestMapping("department/edit/{departmentId}")
+    public String editDep(@PathVariable("departmentId") int departmentId, Model model){
+        model.addAttribute("department", this.departmentService.getDepartment(departmentId));
+        model.addAttribute("listDeps", this.departmentService.viewsList());
         return "department";
     }
 	

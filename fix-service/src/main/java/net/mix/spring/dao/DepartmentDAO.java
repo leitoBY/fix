@@ -3,6 +3,7 @@ package net.mix.spring.dao;
 import java.util.List;
 
 import net.mix.spring.model.Department;
+import net.mix.spring.model.DepartmentStub;
 
 /**
  * The Interface DepartmentDAO.
@@ -25,40 +26,40 @@ public interface DepartmentDAO {
 	public void updateDep(Department dep);
 	
 	/**
-	 * List department.
+	 * get all departments.
 	 *
 	 * @return the list
 	 */
-	public List<Department> listDeps();
+	public List<Department> getDeps();
 	
 	/**
-	 * Gets the departmentby id.
+	 * Gets the departmentby Id.
 	 *
 	 * @param dept_id the dept_id
 	 * @return the depby id
 	 */
-	public Department getDepbyId(int dept_id);
+	public Department getDepById(int departmentId);
 	
 	/**
 	 * Removes the department.
 	 *
 	 * @param dept_id the dept_id
 	 */
-	public void removeDep(int dept_id);
+	public void removeDep(int departmentId);
 
 	/**
-	 * Counts avetage department salary.
+	 * list for view with avg_salary
 	 *
-	 * @param dep the dep
-	 * @return the double
+	 * @return list of departments 
 	 */
-	Double avgsalary(Department dep);
+	
+	public List<DepartmentStub> viewAll();
 	
 	/**
 	 * Flush. 
 	 * for tests
 	 */
-	void flush();
+	public void flush();
 
 
 }

@@ -10,8 +10,7 @@
 </head>
 <body>
 
-<c:url var="addAction" value="/depworkers/${department.dept_id}/add" ></c:url>
- 
+<c:url var="addAction" value="/depworkers/${department.departmentId}/add" ></c:url>
 <form:form action="${addAction}" commandName="workerDTO">
 <table id="add">
     <caption>Add Worker</caption>
@@ -60,18 +59,14 @@
     </tr>
     <tr>
     	<td>
-            <form:label path="dept_id"/>
+            <form:label path="departmentId"/>
         </td>
     	<td>
     		<form>
-        	<input id="dept_id" name="dept_id" type="hidden" value="${department.dept_id}"/>
+        	<input id="departmentId" name="departmentId" type="hidden" value="${department.departmentId}"/>
         	</form>
         </td>
     </tr>
-   
-    
-    
-    
     <tr>
         <td colspan="2">
             <c:if test="${!empty workerDTO.firstName}">
@@ -86,41 +81,31 @@
     </tr>
 </table>  
 </form:form>
-
-
-
-
 <br>
-
-
 <c:if test="${!empty listWorkers}">
 
     <table>
-    <caption>Department: ${department.dept_name}</caption>
+    <caption>Department: ${department.departmentName}</caption>
     <thead>
     <tr>
         <th width="40">Worker ID</th>
         <th width="120">Worker First Name</th>
         <th width="120">Worker Last Name</th>
         <th width="80">Worker Salary</th>
-  
         <th width="60">Edit</th>
         <th width="60">Delete</th>
     </tr>
     </thead>
     <tbody>
     <c:forEach items="${listWorkers}" var="workerDTO">
-    	<c:if test="${workerDTO.dept_id==department.dept_id}">
+    	<c:if test="${workerDTO.departmentId==department.departmentId}">
         <tr>
             <td>${workerDTO.id}</td>
             <td>${workerDTO.firstName}</td>
             <td>${workerDTO.lastName}</td>
             <td>${workerDTO.salary}</td>
-      
-            
-            
-            <td><a href="<c:url value='/depworkers/${department.dept_id}/edit/${workerDTO.id}' />" >Edit</a></td>
-            <td><a href="<c:url value='/depworkers/${department.dept_id}/remove/${workerDTO.id}' />" >Delete</a></td>
+            <td><a href="<c:url value='/depworkers/${department.departmentId}/edit/${workerDTO.id}' />" >Edit</a></td>
+            <td><a href="<c:url value='/depworkers/${department.departmentId}/remove/${workerDTO.id}' />" >Delete</a></td>
         </tr>
         </c:if>
     </c:forEach>

@@ -33,23 +33,23 @@ public class DaoTest {
 		Department d1 = new Department();
 		Department d2 = new Department();
 		Department d3 = new Department();
-		d1.setDept_name("dep1");
-		d2.setDept_name("dep2");
-		d3.setDept_name("dep3");
-		List<Department> expecteddepartments = new ArrayList<Department>();
-		expecteddepartments.add(d1);
-		expecteddepartments.add(d2);
-		expecteddepartments.add(d3);
+		d1.setDeptartmentName("dep1");
+		d2.setDeptartmentName("dep2");
+		d3.setDeptartmentName("dep3");
+		List<Department> expectedDepartments = new ArrayList<Department>();
+		expectedDepartments.add(d1);
+		expectedDepartments.add(d2);
+		expectedDepartments.add(d3);
 		departmentDAO.addDep(d1);
 		departmentDAO.addDep(d2);
 		departmentDAO.addDep(d3);
-		List<Department> actuaDepartments = departmentDAO.listDeps();
-		assertEquals(d1, departmentDAO.getDepbyId(d1.getDept_id()));
-		assertEquals(expecteddepartments, actuaDepartments);
+		List<Department> actuaDepartments = departmentDAO.getDeps();
+		assertEquals(d1, departmentDAO.getDepById(d1.getDepartmentId()));
+		assertEquals(expectedDepartments, actuaDepartments);
 		//test department update
-		d2.setDept_name("department2");
+		d2.setDeptartmentName("department2");
 		departmentDAO.updateDep(d2);
-		assertEquals("department2", departmentDAO.getDepbyId(d2.getDept_id()).getDept_name());
+		assertEquals("department2", departmentDAO.getDepById(d2.getDepartmentId()).getDeptartmentName());
 		//test worker add + list
 		Worker dw1 = new Worker();
 		Worker dw2 = new Worker();
@@ -110,17 +110,17 @@ public class DaoTest {
 		departmentDAO.updateDep(d2);
 		departmentDAO.updateDep(d3);
 		
-		List<Worker> expectedworkers = new ArrayList<Worker>();
-		expectedworkers.add(dw1);
-		expectedworkers.add(dw2);
-		expectedworkers.add(dw3);
-		expectedworkers.add(ddw1);
-		expectedworkers.add(ddw2);
-		expectedworkers.add(ddw3);
-		expectedworkers.add(dddw1);
-		List<Worker> actualworkers = workerDAO.listWorkers();
-		assertEquals(dw2, workerDAO.getWorkerById(d2.getDept_id()));
-		assertEquals(expectedworkers, actualworkers);
+		List<Worker> expectedWorkers = new ArrayList<Worker>();
+		expectedWorkers.add(dw1);
+		expectedWorkers.add(dw2);
+		expectedWorkers.add(dw3);
+		expectedWorkers.add(ddw1);
+		expectedWorkers.add(ddw2);
+		expectedWorkers.add(ddw3);
+		expectedWorkers.add(dddw1);
+		List<Worker> actualWorkers = workerDAO.listWorkers();
+		assertEquals(dw2, workerDAO.getWorkerById(d2.getDepartmentId()));
+		assertEquals(expectedWorkers, actualWorkers);
 		
 		//test worker update
 		dw2.setFirstName("alex");
@@ -131,7 +131,7 @@ public class DaoTest {
 		workerDAO.flush();
 		//test department delete
 		
-		departmentDAO.removeDep(d1.getDept_id());
+		departmentDAO.removeDep(d1.getDepartmentId());
 		departmentDAO.flush();
 		
 		

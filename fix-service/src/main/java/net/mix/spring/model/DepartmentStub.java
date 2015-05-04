@@ -1,43 +1,54 @@
-package net.mix.spring.dto;
+package net.mix.spring.model;
 
-import java.io.Serializable;
-import java.util.List;
+import javax.persistence.Entity;
 
-import net.mix.spring.model.Worker;
+@Entity
+public class DepartmentStub {
 
-public class DepartmentDTO implements Serializable{
-	private static final long serialVersionUID = 1L;
-	
 	private int departmentId;
 	private String departmentName;
-    private Double avgSalary;
-    private List<Worker> listWorkers;
-    
-	public List<Worker> getListWorkers() {
-		return listWorkers;
+	private Double avgSalary;
+	
+	
+	public DepartmentStub(int departmentId, String departmentName, Double avgSalary) {
+		this.departmentId = departmentId;
+		this.departmentName = departmentName;
+		this.avgSalary = avgSalary;
 	}
-	public void setListWorkers(List<Worker> listWorkers) {
-		this.listWorkers = listWorkers;
-	}
+
+
 	public int getDepartmentId() {
 		return departmentId;
 	}
+
+
 	public void setDepartmentId(int departmentId) {
 		this.departmentId = departmentId;
 	}
+
+
 	public String getDepartmentName() {
 		return departmentName;
 	}
+
+
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
 	}
+
+
 	public Double getAvgSalary() {
 		return avgSalary;
 	}
+
+
 	public void setAvgSalary(Double avgSalary) {
 		this.avgSalary = avgSalary;
 	}
-	
-    
 
+
+	
+	
+	
+		
 }

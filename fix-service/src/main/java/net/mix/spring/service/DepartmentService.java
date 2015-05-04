@@ -3,6 +3,7 @@ package net.mix.spring.service;
 import java.util.List;
 
 import net.mix.spring.dto.DepartmentDTO;
+import net.mix.spring.model.DepartmentStub;
 
 
 /**
@@ -10,8 +11,7 @@ import net.mix.spring.dto.DepartmentDTO;
  * service for work with data (departments)
  */
 public interface DepartmentService {
-	
-	
+		
 	/**
 	 * Save department to db
 	 *
@@ -31,29 +31,29 @@ public interface DepartmentService {
      *
      * @return the list
      */
-    public List<DepartmentDTO> listDeps();
+    public List<DepartmentDTO> getDepartments();
     
     /**
      * Gets the department with specified id
      *
-     * @param department_id the department_id
+     * @param departmentId the departmentId
      * @return dep
      */
-    public DepartmentDTO getDep(int department_id);
+    public DepartmentDTO getDepartment(int departmentId);
     
     /**
      * Delete department by id from db
      *
-     * @param department_id the department_id
+     * @param departmentId the departmentId
      */
-    public void deleteDep(int department_id);
+    public void deleteDep(int departmentId);
     
     /**
-     * Count average salary
+     * get list of all deps from db with avg salary
      *
-     * @param departmentDTO the department dto
+     * @return list of deps
      */
-    public void countSalary(DepartmentDTO departmentDTO);
+    public List<DepartmentStub> viewsList();
     
 
 }

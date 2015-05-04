@@ -15,36 +15,36 @@
 <form:form action="${addAction}" commandName="department">
 <table id="add">
 	<caption>Add Department</caption>
-    <c:if test="${!empty department.dept_name}">
+    <c:if test="${!empty department.departmentName}">
     <tr>
         <td>
-            <form:label path="dept_id">
+            <form:label path="departmentId">
                 <spring:message text="Department ID"/>
             </form:label>
         </td>
         <td>
-            <form:input path="dept_id" readonly="true" size="8"  disabled="true" />
-            <form:hidden path="dept_id" />
+            <form:input path="departmentId" readonly="true" size="8"  disabled="true" />
+            <form:hidden path="departmentId" />
         </td> 
     </tr>
     </c:if>
     <tr>
         <td>
-            <form:label path="dept_name">
+            <form:label path="departmentName">
                 <spring:message text="Department Name"/>
             </form:label>
         </td>
         <td>
-            <form:input path="dept_name" />
+            <form:input path="departmentName" />
         </td> 
     </tr>
     <tr>
         <td colspan="2">
-            <c:if test="${!empty department.dept_name}">
+            <c:if test="${!empty department.departmentName}">
                 <input id="button" type="submit"
                     value="<spring:message text="Edit Department's name"/>" />
             </c:if>
-            <c:if test="${empty department.dept_name}">
+            <c:if test="${empty department.departmentName}">
                 <input id="button" type="submit"
                     value="<spring:message text="Add new Department"/>" />
             </c:if>
@@ -53,8 +53,7 @@
 </table>  
 </form:form>
 <br>
-
-	<c:if test="${!empty listDeps}">
+<c:if test="${!empty listDeps}">
     <table class="tg">
     <caption>Departments</caption>
     <thead>
@@ -66,10 +65,10 @@
     <tbody>
     <c:forEach items="${listDeps}" var="department">
         <tr>
-            <td><a href="depworkers/${department.dept_id}"> ${department.dept_name} </a></td>
-            <td>${department.avg_salary}</td>
-            <td><a href="<c:url value='department/edit/${department.dept_id}' />" >Edit</a></td>
-            <td><a href="<c:url value='department/remove/${department.dept_id}' />" >Delete</a></td>
+            <td><a href="depworkers/${department.departmentId}"> ${department.departmentName} </a></td>
+            <td>${department.avgSalary}</td>
+            <td><a href="<c:url value='department/edit/${department.departmentId}' />" >Edit</a></td>
+            <td><a href="<c:url value='department/remove/${department.departmentId}' />" >Delete</a></td>
         </tr>
     </c:forEach>
     </tbody>

@@ -14,15 +14,11 @@ import net.mix.spring.service.DepartmentService;
  */
 @Component
 public class WorkerDTOFactory {
-	
-	
+		
 	@Autowired
 	private DepartmentService departmentService;
 	
-	
-	@Autowired
-	private DepartmentDTOFactory departmentFactory;
-
+	DepartmentDTOFactory departmentFactory = new DepartmentDTOFactory();
 	
 	/**
 	 * Creates a new WorkerDTO object.
@@ -32,13 +28,11 @@ public class WorkerDTOFactory {
 	 */
 	public WorkerDTO createDTO(Worker worker) {
 		WorkerDTO dto = new WorkerDTO();
-		
 		dto.setId(worker.getId());
 		dto.setFirstName(worker.getFirstName());
 		dto.setLastName(worker.getLastName());
 		dto.setSalary(worker.getSalary());
-		dto.setDept_id(worker.getDepartment().getDept_id());
-		
+		dto.setDepartmentId(worker.getDepartment().getDepartmentId());
 		return dto;
 	}
 	
@@ -49,28 +43,19 @@ public class WorkerDTOFactory {
 	 * @return the list< worker dt o>
 	 */
 	public List<WorkerDTO> createDTOs(List<Worker> workers){
-		
 		List<WorkerDTO> workerDTOs = new ArrayList<WorkerDTO>();
-		
 		if (workers != null) {			
-			
 			for (Worker w : workers) {
-				
 				WorkerDTO workerDTO = new WorkerDTO();
 				workerDTO.setId(w.getId());
 				workerDTO.setFirstName(w.getFirstName());
 				workerDTO.setLastName(w.getLastName());
 				workerDTO.setSalary(w.getSalary());
-				workerDTO.setDept_id(w.getDepartment().getDept_id());
-				
-				
-				
+				workerDTO.setDepartmentId(w.getDepartment().getDepartmentId());
 				workerDTOs.add(workerDTO);
 			}			
 		}
-		
 		return workerDTOs;
-	
 	}
 	
 	/**
@@ -80,13 +65,12 @@ public class WorkerDTOFactory {
 	 * @return the worker
 	 */
 	public Worker createModel(WorkerDTO dto) {
-		
 		Worker model = new Worker();
 		model.setId(dto.getId());
 		model.setFirstName(dto.getFirstName());
 		model.setLastName(dto.getLastName());
 		model.setSalary(dto.getSalary());
-		model.setDepartment(departmentFactory.createModel(departmentService.getDep(dto.getDept_id())));
+		model.setDepartment(departmentFactory.createModel(departmentService.getDepartment(dto.getDepartmentId())));
 		
 		return model;
 		

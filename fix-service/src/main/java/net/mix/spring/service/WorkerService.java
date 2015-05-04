@@ -29,7 +29,7 @@ public interface WorkerService {
      *
      * @return the list
      */
-    public List<WorkerDTO> listWorkers();
+    public List<WorkerDTO> getWorkers();
     
     /**
      * Gets the worker with specified id

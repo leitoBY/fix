@@ -12,7 +12,6 @@
 
  
 <c:url var="addAction" value="/worker/add" ></c:url>
- 
 <form:form action="${addAction}" commandName="workerDTO">
 <table id="add">
 	<caption>Add a Worker</caption>
@@ -61,7 +60,7 @@
     </tr>
     <tr>
     	<td>
-            <form:label path="dept_id">
+            <form:label path="departmentId">
                 <spring:message text="Select Department"/>
             </form:label>
         </td>
@@ -69,7 +68,7 @@
         	<select required id="depos" onchange="myFunction()">
             <option>choose from list</option>
  			<c:forEach items="${listDeps}" var="department">	
- 				<option value="${department.dept_id}">${department.dept_name}</option>
+ 				<option value="${department.departmentId}">${department.departmentName}</option>
  			</c:forEach>	
  			</select>
  			<script>
@@ -79,7 +78,7 @@
 			</script>
 		</td> 
         <td>
-        	<form:input path="dept_id" type="hidden" id="sel" />
+        	<form:input path="departmentId" type="hidden" id="sel" />
         </td>
     </tr>
     <tr>
@@ -96,13 +95,7 @@
     </tr>
 </table>  
 </form:form>
-
-
-
-
 <br>
-
-
 <c:if test="${!empty listWorkers}">
     <table>
     <caption>Workers List</caption>
@@ -125,11 +118,10 @@
             <td>${workerDTO.lastName}</td>
             <td>${workerDTO.salary}</td>
             <c:forEach items="${listDeps}" var="department">
-            	<c:if test="${workerDTO.dept_id==department.dept_id}">
-            	<td>${department.dept_name}</td>
+            	<c:if test="${workerDTO.departmentId==department.departmentId}">
+            	<td>${department.departmentName}</td>
             	</c:if>
             </c:forEach>
-            
             <td><a href="<c:url value='/worker/edit/${workerDTO.id}' />" >Edit</a></td>
             <td><a href="<c:url value='/worker/remove/${workerDTO.id}' />" >Delete</a></td>
         </tr>

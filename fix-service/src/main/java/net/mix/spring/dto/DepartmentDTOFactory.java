@@ -13,7 +13,7 @@ import net.mix.spring.model.Worker;
 
 /**
  * A factory for creating DepartmentDTO objects.
- */
+ */ 
 @Component
 public class DepartmentDTOFactory {
 	
@@ -24,14 +24,13 @@ public class DepartmentDTOFactory {
 	 * @return the department dto
 	 */
 	public DepartmentDTO createDTO(Department department) {
+		
 		DepartmentDTO dto = new DepartmentDTO();
-		
-		dto.setDept_id(department.getDept_id());
-		dto.setDept_name(department.getDept_name());
-		dto.setAvg_salary(department.getAvg_salary());
+		dto.setDepartmentId(department.getDepartmentId());
+		dto.setDepartmentName(department.getDeptartmentName());
+		dto.setAvgSalary(department.getAvgSalary());
 		List<Worker> list = new ArrayList<Worker>(department.getWorkersList());
-		dto.setlWorkers(list);
-		
+		dto.setListWorkers(list);
 		return dto;
 	}
 	
@@ -42,25 +41,19 @@ public class DepartmentDTOFactory {
 	 * @return the list< department dto>
 	 */
 	public List<DepartmentDTO> createDTOs(List<Department> departments){
-		
 		List<DepartmentDTO> departmentDTOs = new ArrayList<DepartmentDTO>();
-		
 		if (departments != null) {			
-			
 			for (Department d : departments) {
-				
 				DepartmentDTO departmentDTO = new DepartmentDTO();
-				departmentDTO.setDept_id(d.getDept_id());
-				departmentDTO.setDept_name(d.getDept_name());
-				departmentDTO.setAvg_salary(d.getAvg_salary());
+				departmentDTO.setDepartmentId(d.getDepartmentId());
+				departmentDTO.setDepartmentName(d.getDeptartmentName());
+				departmentDTO.setAvgSalary(d.getAvgSalary());
 				List<Worker> list = new ArrayList<Worker>(d.getWorkersList());
-				departmentDTO.setlWorkers(list);
+				departmentDTO.setListWorkers(list);
 				departmentDTOs.add(departmentDTO);
 			}			
 		}
-		
 		return departmentDTOs;
-	
 	}
 	
 	/**
@@ -72,14 +65,17 @@ public class DepartmentDTOFactory {
 	public Department createModel(DepartmentDTO dto) {
 		
 		Department model = new Department();
-		model.setDept_id(dto.getDept_id());
-		model.setDept_name(dto.getDept_name());
-		model.setAvg_salary(dto.getAvg_salary());
-		if(dto.getlWorkers()!=null) {
-		Set<Worker> set = new HashSet<Worker>(dto.getlWorkers());
-		model.setWorkersList(set);
-		return model; }
-		else return model;
+		model.setDepartmentId(dto.getDepartmentId());
+		model.setDeptartmentName(dto.getDepartmentName());
+		model.setAvgSalary(dto.getAvgSalary());
+		if(dto.getListWorkers()!=null) {
+			Set<Worker> set = new HashSet<Worker>(dto.getListWorkers());
+			model.setWorkersList(set);
+			return model;
+		}
+		else {
+			return model;
+		}
 		
 	}
 

@@ -7,6 +7,7 @@ import net.mix.spring.model.Worker;
 
 /**
  * The Interface WorkerDAO.
+ * Data access object for working with db
  */
 public interface WorkerDAO {
  
@@ -25,7 +26,7 @@ public interface WorkerDAO {
     public void updateWorker(Worker w);
     
     /**
-     * List workers.
+     * get List of all workers.
      *
      * @return the list
      */
@@ -45,6 +46,9 @@ public interface WorkerDAO {
      * @param id the id
      */
     public void removeWorker(int id);
-    
+    /**
+	 * Flush. 
+	 * for tests
+	 */
     public void flush();
 }
