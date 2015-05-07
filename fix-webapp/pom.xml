@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>net.mix.spring</groupId>
-    <artifactId>SpringMVCHibernate</artifactId>
+    <artifactId>fix</artifactId>
     <version>1.0.0</version>
   </parent>
   <packaging>war</packaging>
